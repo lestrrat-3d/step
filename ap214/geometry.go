@@ -44,6 +44,31 @@ func Circle(id uint64, name string, placement step.Reference, radius step.Real) 
 	}}
 }
 
+// ToroidalSurface defines a torus around the placement's axis. majorRadius is the distance from the axis to the
+// tube's centre circle and minorRadius is the tube radius; both use the context's length unit.
+func ToroidalSurface(
+	id uint64, name string, placement step.Reference, majorRadius, minorRadius step.Real,
+) step.Entity {
+	return step.Entity{ID: id, Name: "TOROIDAL_SURFACE", Parameters: []step.Value{
+		step.String(name), placement, majorRadius, minorRadius,
+	}}
+}
+
+// SphericalSurface defines a sphere centred on the placement's origin; radius uses the context's length unit.
+func SphericalSurface(id uint64, name string, placement step.Reference, radius step.Real) step.Entity {
+	return step.Entity{ID: id, Name: "SPHERICAL_SURFACE", Parameters: []step.Value{
+		step.String(name), placement, radius,
+	}}
+}
+
+// Ellipse defines an ellipse in the placement's plane. semiAxis1 lies along the placement's reference direction and
+// semiAxis2 along the perpendicular in that plane; both use the context's length unit.
+func Ellipse(id uint64, name string, placement step.Reference, semiAxis1, semiAxis2 step.Real) step.Entity {
+	return step.Entity{ID: id, Name: "ELLIPSE", Parameters: []step.Value{
+		step.String(name), placement, semiAxis1, semiAxis2,
+	}}
+}
+
 // Vector combines a direction with a magnitude in the context's length unit.
 func Vector(id uint64, name string, orientation step.Reference, magnitude step.Real) step.Entity {
 	return step.Entity{ID: id, Name: "VECTOR", Parameters: []step.Value{
