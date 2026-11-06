@@ -21,8 +21,9 @@ conform to a particular application protocol schema. `step` does not parse
 files, model geometry, or export CAD bodies.
 
 `ap214` owns the `AUTOMOTIVE_DESIGN` schema identity and pure constructors
-for a focused set of AP214 records: product linkage, 3D analytic geometry,
-advanced B-rep topology, and the geometric representation context. It depends
+for a focused set of AP214 records: product linkage, assembly structure with
+placement transformations, 3D analytic geometry, advanced B-rep topology, the
+geometric representation context, and surface colour presentation. It depends
 only on `step`, and `step` does not import it. Its constructors fix record names,
 field order, and Part 21 encodings; they do not certify EXPRESS WHERE rules,
 topological validity, or full AP214 schema conformance. A caller supplies the
