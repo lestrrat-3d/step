@@ -62,3 +62,18 @@ func ManifoldSolidBrep(id uint64, name string, outer step.Reference) step.Entity
 		step.String(name), outer,
 	}}
 }
+
+// BrepWithVoids is a solid bounded by an outer shell and void shells.
+func BrepWithVoids(id uint64, name string, outer step.Reference, voids ...step.Reference) step.Entity {
+	return step.Entity{ID: id, Name: "BREP_WITH_VOIDS", Parameters: []step.Value{
+		step.String(name), outer, refs(voids),
+	}}
+}
+
+// OrientedClosedShell reuses a closed shell with its orientation kept or
+// reversed. Its face list is derived (*).
+func OrientedClosedShell(id uint64, name string, shell step.Reference, orientation bool) step.Entity {
+	return step.Entity{ID: id, Name: "ORIENTED_CLOSED_SHELL", Parameters: []step.Value{
+		step.String(name), step.Omitted{}, shell, logical(orientation),
+	}}
+}
